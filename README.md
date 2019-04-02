@@ -7,3 +7,4 @@
 - RxAlamofire
 - RxRealmDataSources
 - Realm
+- SwiftLint
