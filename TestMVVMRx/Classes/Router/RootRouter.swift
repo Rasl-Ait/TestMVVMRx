@@ -8,4 +8,3 @@ final class RootRouter {
 		window?.rootViewController = rootViewController
 	}
 }
-

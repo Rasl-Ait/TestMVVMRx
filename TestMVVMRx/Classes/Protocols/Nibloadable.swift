@@ -7,7 +7,7 @@ protocol Nibloadable: class {
 
 extension Nibloadable {
 	static var nib: UINib {
-		return UINib(nibName: name, bundle: Bundle.init(for: self))
+		return UINib(nibName: name, bundle: Bundle(for: self))
 	}
 	
 	static var name: String {
@@ -17,11 +17,10 @@ extension Nibloadable {
 
 extension Nibloadable where Self: UIView {
 	static func loadFromNib() -> Self {
-		guard let view = nib.instantiate(withOwner: nil, options: nil).first as? Self else { fatalError() }
+		guard let view = nib.instantiate(withOwner: nil, options: nil).first as? Self else { fatalError("error") }
 		
 		return view
 	}
 }
 
 extension UIView: Nibloadable {}
-

@@ -26,11 +26,8 @@ class NetworkingServiceImplementation: NetworkingService {
 	
 	func getPosts(completion: @escaping ApiCompletionBlock<[Post]>) {
 		guard let url = URL(string: baseUrl) else { return }
-		network.request(with: url, type: [Post].self, method: .get) { (result) in
+		network.request(with: url, type: [Post].self, method: .get) { result in
 			completion(result)
 		}
 	}
 }
-
-
-

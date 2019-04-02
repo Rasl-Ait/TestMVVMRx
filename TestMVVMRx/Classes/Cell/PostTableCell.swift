@@ -1,5 +1,5 @@
 //
-//  ToDoItemTableCell.swift
+//  PostTableCell.swift
 //  TestMVVMRx
 //
 //  Created by rasl on 25/03/2019.
@@ -10,9 +10,9 @@ import UIKit
 import RealmSwift
 
 class PostTableCell: UITableViewCell {
-	@IBOutlet weak var indexLabel: UILabel!
-	@IBOutlet weak var titleLabel: UILabel!
-	@IBOutlet weak var button: UIButton!
+	@IBOutlet private weak var indexLabel: UILabel!
+	@IBOutlet private weak var titleLabel: UILabel!
+	@IBOutlet private weak var button: UIButton!
 	
 	static var height: CGFloat { return 80 }
 	

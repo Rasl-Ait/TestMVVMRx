@@ -12,7 +12,7 @@ import RxCocoa
 import RxAlamofire
 import Alamofire
 
-typealias ApiCompletionBlock<T : Decodable> = (Result<T>) -> Void
+typealias ApiCompletionBlock<T: Decodable> = (Result<T>) -> Void
 
 public enum RequestMethod: String {
 	case get, post, put, patch
@@ -20,7 +20,8 @@ public enum RequestMethod: String {
 
 protocol Network {
 	func request<T: Decodable> (
-		with url: URL, type: T.Type, method:(RequestMethod), completion: @escaping ApiCompletionBlock<T>)
+		with url: URL, type: T.Type, method: (RequestMethod),
+		completion: @escaping ApiCompletionBlock<T>)
 	
 }
 
@@ -28,7 +29,8 @@ protocol Network {
 	let disposeBag = DisposeBag()
 	
 	func request<T: Decodable> (
-		with url: URL, type: T.Type, method:(RequestMethod), completion: @escaping ApiCompletionBlock<T>){
+		with url: URL, type: T.Type, method: (RequestMethod),
+		completion: @escaping ApiCompletionBlock<T>) {
 		
 		guard let httpMethod = HTTPMethod(rawValue: method.rawValue.uppercased())
 		   else {
@@ -37,7 +39,7 @@ protocol Network {
 		}
 		RxAlamofire.requestData(httpMethod, url, parameters: nil, encoding: URLEncoding.default, headers: nil)
 		.observeOn(MainScheduler.instance)
-			.subscribe(onNext: { resp, data  in
+			.subscribe(onNext: { _, data  in
 				do {
 					let decoder = JSONDecoder()
 					decoder.keyDecodingStrategy = .convertFromSnakeCase
@@ -46,11 +48,9 @@ protocol Network {
 				} catch {
 					completion(.failure(NetworkError.decoding))
 				}
-			}, onError: { error in
+			}, onError: { _ in
 				completion(.failure(NetworkError.network))
 			}).disposed(by: disposeBag)
 		
 	}
 }
-
-

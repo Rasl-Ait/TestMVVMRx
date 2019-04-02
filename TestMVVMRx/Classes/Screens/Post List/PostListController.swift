@@ -12,7 +12,7 @@ import RxCocoa
 import RxRealmDataSources
 
 class PostListController: UIViewController {
-	@IBOutlet weak var tableView: UITableView!
+	@IBOutlet private weak var tableView: UITableView!
 	
 	var viewModel: PostListViewModelType = PostListViewModel()
 	
@@ -41,8 +41,7 @@ class PostListController: UIViewController {
 	
 	func dataSource() {
 		let dataSource = RxTableViewRealmDataSource<PostModel>(
-		cellIdentifier: PostTableCell.name, cellType: PostTableCell.self) {
-			(cell, indexPath, item) in
+		cellIdentifier: PostTableCell.name, cellType: PostTableCell.self) { cell, _, item in
 			cell.model = item
 			cell.onToggleCompleted = { [weak self] item in
 				guard let `self` = self else { return }

@@ -37,4 +37,3 @@ class PostListViewModel: PostListViewModelType {
 		return realmService.fetchItems(ofType: PostModel.self)
 	}
 }
-

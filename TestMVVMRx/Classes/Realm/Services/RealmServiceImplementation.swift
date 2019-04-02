@@ -33,7 +33,7 @@ class RealmServiceImplementation: RealmService {
 		save(object)
 	}
 	
-	func fetchItems<T>(ofType type: T.Type) -> Results<T> where T : Object {
+	func fetchItems<T>(ofType type: T.Type) -> Results<T> where T: Object {
 		let byKeyPath = PostModel.Property.isCompleted.rawValue
 		return realm.objects(T.self).sorted(byKeyPath: byKeyPath)
 	}
