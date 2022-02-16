@@ -1,8 +1,7 @@
 # TestMVVMRx
 
-test app
-test app too 
-test app three
+тестовое приложение
+
 ## Используются библиотеки:
 
 - RxSwift
